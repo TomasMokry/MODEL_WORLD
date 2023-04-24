@@ -30,7 +30,7 @@ CREATE TABLE `products` (
   `isForSale` tinyint(1) DEFAULT NULL,
   `price` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,23001,'cabinet','Rhino 3D model of cabinet',1,21),(2,23002,'sofa','Rhino 3D model of sofa',1,20),(4,23004,'dining chair','Rhino 3D model of dining chair',1,8),(5,23005,'bookshelf','Rhino 3D model of bookshelf',1,100),(7,23007,'nightstand','Rhino 3D model of nightstand',1,12),(8,23008,'desk','Rhino 3D model of desk',1,35),(9,23009,'dresser','Rhino 3D model of dresser',1,28),(10,23010,'filing cabinet','Rhino 3D model of filing cabinet',1,20),(11,23011,'recliner','Rhino 3D model of recliner',1,40),(13,23013,'stool','Rhino 3D model of stool',1,7),(14,23014,'bench','Rhino 3D model of bench',1,22),(15,23015,'tv stand','Rhino 3D model of tv stand',1,18),(17,23017,'dining table','Rhino 3D model of dining table',1,40),(18,23018,'coffee table','Rhino 3D model of coffee table',1,25),(19,23019,'bookshelf','Rhino 3D model of bookshelf',1,30),(20,23020,'bed','Rhino 3D model of bed',1,80),(21,23021,'sofa','Rhino 3D model of sofa',1,120),(22,23022,'armoire','Rhino 3D model of armoire',1,70),(23,23023,'chest of drawers','Rhino 3D model of chest of drawers',1,50),(25,23025,'side table','Rhino 3D model of side table',1,20),(27,23027,'coffee table test','Rhino 3D model of coffee table',1,15);
+INSERT INTO `products` VALUES (1,23001,'cabinet','Rhino 3D model of cabinet',1,21),(2,23002,'sofa','Rhino 3D model of sofa',1,20),(3,23003,'coffee table','Rhino 3D model of coffee table',0,15),(4,23004,'dining chair','Rhino 3D model of dining chair',1,8),(5,23005,'bookshelf','Rhino 3D model of bookshelf',1,25),(6,23006,'bed','Rhino 3D model of bed',0,30),(7,23007,'nightstand','Rhino 3D model of nightstand',1,12),(8,23008,'desk','Rhino 3D model of desk',1,35),(9,23009,'dresser','Rhino 3D model of dresser',1,28),(10,23010,'filing cabinet','Rhino 3D model of filing cabinet',1,20),(11,23011,'recliner','Rhino 3D model of recliner',1,40),(12,23012,'ottoman','Rhino 3D model of ottoman',0,10),(13,23013,'stool','Rhino 3D model of stool',1,7),(14,23014,'bench','Rhino 3D model of bench',1,22),(15,23015,'tv stand','Rhino 3D model of tv stand',1,18),(16,23016,'bar stool','Rhino 3D model of bar stool',0,12),(17,23017,'dining table','Rhino 3D model of dining table',1,40),(18,23018,'coffee table','Rhino 3D model of coffee table',1,25),(19,23019,'bookshelf','Rhino 3D model of bookshelf',1,30),(20,23020,'bed','Rhino 3D model of bed',1,80),(21,23021,'sofa','Rhino 3D model of sofa',1,120),(22,23022,'armoire','Rhino 3D model of armoire',1,70),(23,23023,'chest of drawers','Rhino 3D model of chest of drawers',1,50),(24,23024,'couch','Rhino 3D model of couch',0,150),(25,23025,'side table','Rhino 3D model of side table',1,20),(26,23026,'ottoman','Rhino 3D model of ottoman',0,15);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-04-24 16:05:02
+-- Dump completed on 2023-04-24 16:11:06
