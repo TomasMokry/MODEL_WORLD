@@ -14,15 +14,13 @@ public class ModelWorldRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<Item> loadAllAvailableItems(){
-        return jdbcTemplate.query("SELECT * FROM products", (rs,rowNum) -> {
-            return new Item(
-                    rs.getInt("id"),
-                    rs.getInt("partNo"),
-                    rs.getString("name"),
-                    rs.getString("description"),
-                    rs.getBoolean("isForSale"),
-                    rs.getBigDecimal("price"));
-        });
+        return jdbcTemplate.query("SELECT * FROM products", (rs,rowNum) -> new Item(
+                rs.getInt("id"),
+                rs.getInt("partNo"),
+                rs.getString("name"),
+                rs.getString("description"),
+                rs.getBoolean("isForSale"),
+                rs.getBigDecimal("price")));
     }
 
     public void saveItem(Item newItem){
@@ -35,16 +33,14 @@ public class ModelWorldRepository {
     }
 
     public Item loadProductById(Long id){
-        return jdbcTemplate.queryForObject("SELECT * FROM products WHERE id = ?", new Object[]{id}, (rs, rowNum) -> {
-            return new Item(
-                    rs.getInt("id"),
-                    rs.getInt("partNo"),
-                    rs.getString("name"),
-                    rs.getString("description"),
-                    rs.getBoolean("isForSale"),
-                    rs.getBigDecimal("price")
-            );
-        });
+        return jdbcTemplate.queryForObject("SELECT * FROM products WHERE id = ?", new Object[]{id}, (rs, rowNum) -> new Item(
+                rs.getInt("id"),
+                rs.getInt("partNo"),
+                rs.getString("name"),
+                rs.getString("description"),
+                rs.getBoolean("isForSale"),
+                rs.getBigDecimal("price")
+        ));
     }
 
     public void updatePriceById(Long id, BigDecimal newPrice){
@@ -53,5 +49,16 @@ public class ModelWorldRepository {
 
     public void deleteOutOfSaleItems(){
         jdbcTemplate.execute("DELETE FROM products WHERE isForSale = false");
+    }
+
+    public Item loadLastCreatedProduct(){
+        String query = "SELECT * from products order by id DESC LIMIT 1";
+        return jdbcTemplate.queryForObject(query, (rs, rowNum) -> new Item(
+                rs.getInt("id"),
+                rs.getInt("partNo"),
+                rs.getString("name"),
+                rs.getString("description"),
+                rs.getBoolean("isForSale"),
+                rs.getBigDecimal("price")));
     }
 }

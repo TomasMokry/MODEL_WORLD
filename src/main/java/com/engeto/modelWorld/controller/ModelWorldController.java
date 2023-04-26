@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
+
 
 @RestController
 @RequestMapping("/modelWorld")
@@ -34,9 +34,9 @@ public class ModelWorldController {
     }
 
     @PostMapping(value ="/item")
-    public void saveItem(@RequestBody Item itemToCreate){
-        logger.info("Item to create " + itemToCreate.toString() + ".");
+    public Item saveItem(@RequestBody Item itemToCreate){
         modelWorldRepository.saveItem(itemToCreate);
+        return modelWorldRepository.loadLastCreatedProduct();
     }
 
     @DeleteMapping(value = "/items")
