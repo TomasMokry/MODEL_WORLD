@@ -14,7 +14,7 @@ public class ModelWorldRepository {
     JdbcTemplate jdbcTemplate;
 
     public List<Item> loadAllAvailableItems(){
-        return jdbcTemplate.query("SELECT * FROM products", (rs,rowNum) -> new Item(
+        return jdbcTemplate.query("SELECT * FROM items", (rs,rowNum) -> new Item(
                 rs.getInt("id"),
                 rs.getInt("partNo"),
                 rs.getString("name"),
@@ -24,7 +24,7 @@ public class ModelWorldRepository {
     }
 
     public void saveItem(Item newItem){
-        jdbcTemplate.execute("INSERT INTO products(partNo, name, description, isForSale, price) VALUES("
+        jdbcTemplate.execute("INSERT INTO items(partNo, name, description, isForSale, price) VALUES("
                 + newItem.getPartNo() + ",'"
                 + newItem.getName() +"','"
                 + newItem.getDescription() + "',"
@@ -32,8 +32,8 @@ public class ModelWorldRepository {
                 + newItem.getPrice() + ")");
     }
 
-    public Item loadProductById(Long id){
-        return jdbcTemplate.queryForObject("SELECT * FROM products WHERE id = ?", new Object[]{id}, (rs, rowNum) -> new Item(
+    public Item loadItemById(Long id){
+        return jdbcTemplate.queryForObject("SELECT * FROM items WHERE id = ?", new Object[]{id}, (rs, rowNum) -> new Item(
                 rs.getInt("id"),
                 rs.getInt("partNo"),
                 rs.getString("name"),
@@ -44,15 +44,15 @@ public class ModelWorldRepository {
     }
 
     public void updatePriceById(Long id, BigDecimal newPrice){
-        jdbcTemplate.execute("UPDATE products SET price =" + newPrice + " WHERE id =" + id);
+        jdbcTemplate.execute("UPDATE items SET price =" + newPrice + " WHERE id =" + id);
     }
 
     public void deleteOutOfSaleItems(){
-        jdbcTemplate.execute("DELETE FROM products WHERE isForSale = false");
+        jdbcTemplate.execute("DELETE FROM items WHERE isForSale = false");
     }
 
-    public Item loadLastCreatedProduct(){
-        String query = "SELECT * from products order by id DESC LIMIT 1";
+    public Item loadLastCreatedItem(){
+        String query = "SELECT * from items ORDER BY id DESC LIMIT 1";
         return jdbcTemplate.queryForObject(query, (rs, rowNum) -> new Item(
                 rs.getInt("id"),
                 rs.getInt("partNo"),

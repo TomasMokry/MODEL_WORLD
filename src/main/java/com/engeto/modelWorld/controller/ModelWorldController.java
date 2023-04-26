@@ -3,6 +3,7 @@ package com.engeto.modelWorld.controller;
 import com.engeto.modelWorld.error.ErrorResponse;
 import com.engeto.modelWorld.model.Item;
 import com.engeto.modelWorld.repository.ModelWorldRepository;
+import com.engeto.modelWorld.service.ModelWorldService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class ModelWorldController {
     @Autowired
     ModelWorldRepository modelWorldRepository;
 
+    @Autowired
+    ModelWorldService modelWorldService;
+
     @GetMapping(value = "/items")
     public List<Item> loadAllAvailableItems(){
        logger.info("Get all available Items.");
@@ -28,15 +32,15 @@ public class ModelWorldController {
     }
 
     @GetMapping(value = "/item/{id}")
-    public Item loadProductById(@PathVariable Long id){
+    public Item loadItemById(@PathVariable Long id) throws Exception {
         logger.info(String.format("Get one item id %s .", id));
-        return modelWorldRepository.loadProductById(id);
+        return modelWorldService.getItemById(id);
     }
 
     @PostMapping(value ="/item")
     public Item saveItem(@RequestBody Item itemToCreate){
         modelWorldRepository.saveItem(itemToCreate);
-        return modelWorldRepository.loadLastCreatedProduct();
+        return modelWorldRepository.loadLastCreatedItem();
     }
 
     @DeleteMapping(value = "/items")
@@ -45,14 +49,15 @@ public class ModelWorldController {
     }
 
     @PutMapping(value = "/item/{id}")
-    public void updatePriceById(@PathVariable Long id, @RequestParam BigDecimal price){
+    public Item updatePriceById(@PathVariable Long id, @RequestParam BigDecimal price){
         modelWorldRepository.updatePriceById(id,price);
+        return modelWorldRepository.loadItemById(id);
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handlerException(Exception e){
-        return new ErrorResponse(e.getMessage(), LocalDateTime.now());
+        return new ErrorResponse(e.getLocalizedMessage(), LocalDateTime.now());
     }
 
 
