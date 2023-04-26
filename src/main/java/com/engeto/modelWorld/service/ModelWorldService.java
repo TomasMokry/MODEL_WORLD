@@ -13,10 +13,9 @@ public class ModelWorldService {
     public Item getItemById(Long id) throws Exception {
         Item item = modelWorldRepository.loadItemById(id);
 
-        if (item != null) {
-            return item;
-        } else {
+        if (item == null) {
             throw new Exception("This id not find");
         }
+        return item;
     }
 }
