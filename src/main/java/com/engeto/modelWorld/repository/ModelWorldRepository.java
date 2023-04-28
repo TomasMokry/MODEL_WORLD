@@ -33,7 +33,8 @@ public class ModelWorldRepository {
     }
 
     public Item loadItemById(Long id){
-        return jdbcTemplate.queryForObject("SELECT * FROM items WHERE id = ?", new Object[]{id}, (rs, rowNum) -> new Item(
+        return jdbcTemplate.queryForObject("SELECT * FROM items WHERE id = ?", new Object[]{id},
+                (rs, rowNum) -> new Item(
                 rs.getInt("id"),
                 rs.getInt("partNo"),
                 rs.getString("name"),
